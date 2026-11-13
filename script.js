@@ -307,25 +307,19 @@ document.querySelectorAll(".gallery-grid img").forEach((img) => {
   });
 });
 
-/* =================================
-   ANIMASI SLIDE HERO
-================================= */
+/* ANIMASI HERO */
+const openButton = document.getElementById("openInvitation");
 
-const revealElements = document.querySelectorAll(
-  ".reveal-left, .reveal-right"
+const heroRevealElements = document.querySelectorAll(
+  ".hero .reveal-left, .hero .reveal-right"
 );
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-      revealObserver.unobserve(entry.target);
-    }
+if (openButton) {
+  openButton.addEventListener("click", () => {
+    heroRevealElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, 500 + index * 600);
+    });
   });
-}, {
-  threshold: 0.15
-});
-
-revealElements.forEach((element) => {
-  revealObserver.observe(element);
-});
+}
